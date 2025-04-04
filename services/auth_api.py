@@ -4,19 +4,11 @@ import flet as ft
 import urllib.parse
 import requests
 
-import configparser
-config = configparser.ConfigParser()
-try:
-    config.read('./config.cfg')
-    azure_settings = config['azure1']
-except Exception:
-    config.read('./OneDriveSDK/config.cfg')
-    azure_settings = config['azure1']
+from config import Config
 
-
-CLIENT_ID = azure_settings['clientId']
-CLIENT_SECRET = azure_settings['client_credential']
-REDIRECT_URI = azure_settings['REDIRECT_URI']
+CLIENT_ID = Config.CLIENT_ID
+REDIRECT_URI = Config.REDIRECT_URI
+TENANT_ID = Config.TENANT_ID
 graphUserScopes = ["User.Read"] #azure_settings['graphUserScopes'].split()
 AUTHORIZE_ENDPOINT = "https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize"
 TOKEN_ENDPOINT = "https://login.microsoftonline.com/consumers/oauth2/v2.0/token"
